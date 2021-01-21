@@ -1,4 +1,6 @@
 HELP.md
+!**/src/main/**/target/
+!**/src/test/**/target/
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
@@ -27,6 +29,7 @@ hs_err_pid*
 # Maven
 log/
 target/
+!.mvn/wrapper/maven-wrapper.jar
 
 # Inclusions
 !lib/**
@@ -57,3 +60,6 @@ java/build/**
 /nbdist/
 /.nb-gradle/
 build/
+
+## VS Code ##
+.vscode/
