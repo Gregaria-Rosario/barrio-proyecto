@@ -21,16 +21,14 @@ import org.hibernate.annotations.GenericGenerator;
  */
 @Data
 @Entity
-public class Vote implements Serializable {
+public class Tag implements Serializable {
   
   @Id
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String id;
   
-//  private User user;
-  
-//  private Iniciative iniciative;
+  private String name;
   
   private boolean active;
   

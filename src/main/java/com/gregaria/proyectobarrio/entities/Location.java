@@ -21,16 +21,26 @@ import org.hibernate.annotations.GenericGenerator;
  */
 @Data
 @Entity
-public class Vote implements Serializable {
+public class Location implements Serializable {
   
   @Id
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String id;
   
-//  private User user;
+  private Long length;
   
-//  private Iniciative iniciative;
+  private Long latitude;
+  
+  private String address;
+  
+  private String neighborhood;
+  
+  private String city;
+  
+  private String state;
+  
+  private String country;
   
   private boolean active;
   

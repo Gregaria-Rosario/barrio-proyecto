@@ -10,6 +10,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import lombok.Data;
@@ -21,16 +22,19 @@ import org.hibernate.annotations.GenericGenerator;
  */
 @Data
 @Entity
-public class Vote implements Serializable {
+public class Comment implements Serializable {
   
   @Id
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String id;
   
+  private String content;
+  
+//  @ManyToOne
 //  private User user;
   
-//  private Iniciative iniciative;
+  private boolean reported;
   
   private boolean active;
   
