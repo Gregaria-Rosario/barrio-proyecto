@@ -5,6 +5,7 @@
  */
 package com.gregaria.proyectobarrio.services;
 
+import com.gregaria.proyectobarrio.entities.Initiative;
 import com.gregaria.proyectobarrio.entities.Vote;
 import com.gregaria.proyectobarrio.repositories.VoteRepository;
 import java.util.List;
@@ -56,9 +57,9 @@ public class VoteService {
 //    return voteRepository.findByUser(user);
 //  }
   
-//  public List<Vote> findByIniciative(Iniciative iniciative) {
-//    return voteRepository.findByIniciative(iniciative);
-//  }
+  public List<Vote> findByIniciative(Initiative initiative) {
+    return voteRepository.findByInitiative();
+  }
   
   
 }

@@ -22,5 +22,5 @@ public interface VoteRepository extends JpaRepository<Vote, String> {
   public List<Vote> findByUser();
   
   @Query("")
-  public List<Vote> findByIniciative();
+  public List<Vote> findByInitiative();
 }
