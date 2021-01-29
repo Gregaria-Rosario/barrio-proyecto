@@ -30,7 +30,7 @@ public class Vote implements Serializable {
   
 //  private User user;
   
-//  private Iniciative iniciative;
+  private Initiative initiative;
   
   private boolean active;
   

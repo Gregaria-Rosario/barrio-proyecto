@@ -1,5 +1,6 @@
 package com.gregaria.proyectobarrio.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -17,20 +18,23 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Initiative {
+public class Initiative implements Serializable {
 
 	@Id
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String id;
+	
 	private String nombre;
 	//private List<User> volunteers;
 	//private User creator;
 	private Integer budget; //presupuesto
 	private String description;
 	private State state;
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdAt;
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updatedAt;
 	
