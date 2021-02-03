@@ -28,7 +28,7 @@ public class Vote implements Serializable {
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String id;
   
-//  private User user;
+  private User user;
   
   private Initiative initiative;
   

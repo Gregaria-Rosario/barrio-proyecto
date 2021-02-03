@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.gregaria.proyectobarrio.entities.Vote;
 import java.util.List;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 /**
  *
@@ -18,9 +19,9 @@ import org.springframework.data.jpa.repository.Query;
 @Repository
 public interface VoteRepository extends JpaRepository<Vote, String> {
   
-  @Query("")
-  public List<Vote> findByUser();
+  @Query("SELECT a FROM Vote a WHERE a.user = :id")
+  public List<Vote> findByUser(@Param("id") String id);
   
-  @Query("")
-  public List<Vote> findByInitiative();
+  @Query("SELECT a FROM Vote a WHERE a.initiative = :id")
+  public List<Vote> findByInitiative(@Param("id") String id);
 }

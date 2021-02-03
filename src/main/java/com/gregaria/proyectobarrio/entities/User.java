@@ -32,6 +32,8 @@ public class User implements Serializable {
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String id;
   
+  private String idFirebase;
+  
   private Role role;
   
   @ManyToMany
