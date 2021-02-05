@@ -16,12 +16,9 @@ public class ProyectoBarrioApplication implements WebMvcConfigurer {
 		SpringApplication.run(ProyectoBarrioApplication.class, args);
 	}
 
-	  @Override
-	    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-	 
-	           registry.addResourceHandler("swagger-ui.html")
-	                    .addResourceLocations("classpath:/META-INF/resources/");
-	 
-	    }
-	
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
+	}
+
 }

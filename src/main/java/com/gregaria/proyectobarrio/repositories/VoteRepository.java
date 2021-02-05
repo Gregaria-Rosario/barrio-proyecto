@@ -17,10 +17,10 @@ import org.springframework.data.jpa.repository.Query;
  */
 @Repository
 public interface VoteRepository extends JpaRepository<Vote, String> {
-  
-  @Query("")
-  public List<Vote> findByUser();
-  
-  @Query("")
-  public List<Vote> findByInitiative();
+
+  // @Query("")
+  // public List<Vote> findByUser();
+
+  // @Query("")
+  // public List<Vote> findByInitiative();
 }
