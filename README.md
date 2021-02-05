@@ -4,7 +4,7 @@ La colaboración para conquistar tu barrio
 
 ## Swagger
 
-[http://localhost:8080/swagger-ui/](http://localhost:8080/swagger-ui/)
+[swagger-ui](http://localhost:8080/swagger-ui/index.html)
 
 ## Local Dev
 
