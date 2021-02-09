@@ -25,17 +25,20 @@ public class VoteService {
   @Autowired
   private VoteRepository voteRepository;
   
-  public Vote save(Vote vote) throws WebException {
+  public Vote save(String id) throws WebException {
+    Vote vote = voteRepository.getOne(id);
     validate(vote);
     return voteRepository.save(vote);
   }
   
-  public Vote update(Vote vote) throws WebException {
+  public Vote update(String id) throws WebException {
+    Vote vote = voteRepository.getOne(id);
     validate(vote);
     return voteRepository.save(vote);
   }
   
-  public Vote activate(Vote vote) throws WebException {
+  public Vote activate(String id) throws WebException {
+    Vote vote = voteRepository.getOne(id);
     if (!vote.isActive()) {
       vote.setActive(true);
       voteRepository.save(vote);
@@ -45,7 +48,8 @@ public class VoteService {
     return null;
   }
   
-  public Vote deactivate(Vote vote) throws WebException{
+  public Vote deactivate(String id) throws WebException{
+    Vote vote = voteRepository.getOne(id);
     if (vote.isActive()) {
       vote.setActive(false);
       voteRepository.save(vote);
@@ -55,7 +59,14 @@ public class VoteService {
     return null;
   }
   
-  public void delete(Vote vote) {
+  public Vote activeToggle(String id) {
+    Vote vote = voteRepository.getOne(id);
+    vote.setActive(!vote.isActive());
+    return voteRepository.save(vote);
+  }
+  
+  public void delete(String id) {
+    Vote vote = voteRepository.getOne(id);
     voteRepository.delete(vote);
   }
   
