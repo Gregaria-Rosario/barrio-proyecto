@@ -21,7 +21,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class VoteService {
-  
+
   @Autowired
   private VoteRepository voteRepository;
   
@@ -69,11 +69,11 @@ public class VoteService {
     Vote vote = voteRepository.getOne(id);
     voteRepository.delete(vote);
   }
-  
+
   public List<Vote> all() {
     return voteRepository.findAll();
   }
-  
+
   public Vote findById(String id) {
     Optional<Vote> response = voteRepository.findById(id);
     Vote vote = response.get();
