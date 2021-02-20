@@ -33,7 +33,7 @@ public class InitiativeService {
 	
 	@Transactional
 	public List<Initiative> listAll() {
-		return initiativeRepository.findAllActive();
+		return initiativeRepository.findByActiveTrue();
 	}
 	
 	public Initiative findById(String id) {
