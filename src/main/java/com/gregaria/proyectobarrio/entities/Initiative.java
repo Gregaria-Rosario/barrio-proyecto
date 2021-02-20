@@ -6,9 +6,12 @@ import java.util.List;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,10 +32,17 @@ public class Initiative implements Serializable {
 	private String id;
 
 	private String nombre;
-	// private List<User> volunteers;
-	// private User creator;
+	
+	@ManyToMany
+	private List<User> volunteers;
+	
+	@ManyToOne
+	private User creator;
+	
 	private Integer budget; // presupuesto
 	private String description;
+	
+	@Enumerated(EnumType.STRING)
 	private State state;
 
 	@Temporal(TemporalType.TIMESTAMP)
