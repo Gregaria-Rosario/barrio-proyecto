@@ -10,6 +10,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -32,6 +34,7 @@ public class User implements Serializable {
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String id;
 	
+	@Enumerated(EnumType.STRING)
 	private Role role;
 	
 	@ManyToMany
