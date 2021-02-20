@@ -66,6 +66,9 @@ public class Initiative implements Serializable {
 	@ElementCollection
 	private List<String> pictures;
 
+	@ManyToOne
+	private Location location;
+	
 	@ManyToMany
 	private List<Inspiration> inspirations;
 }
