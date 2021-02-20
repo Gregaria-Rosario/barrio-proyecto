@@ -28,7 +28,7 @@ public class Location implements Serializable {
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String id;
 
-	private Long length;
+	private Long longitude;
 	
 	private Long latitude;
 	

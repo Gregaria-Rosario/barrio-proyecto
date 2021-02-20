@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gregaria.proyectobarrio.entities.Initiative;
@@ -22,11 +25,12 @@ public class InitiativeRestController {
 	InitiativeService initiativeService;
 	
 	@GetMapping("/")
-	public List <Initiative> getAll(){
+	public @ResponseBody Iterable<Initiative> getAll(){
 		return initiativeService.listActives();
 	}
 	
-	public ResponseEntity<Initiative> save(@RequestBody Initiative initiative){
+	@PostMapping("/save")
+	public @ResponseBody Initiative newInitiative(@RequestParam String title){
 		Initiative response = initiativeService.save(initiative);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
