@@ -21,9 +21,9 @@ public class InitiativeRestController {
 	@Autowired
 	InitiativeService initiativeService;
 	
-	@GetMapping("/all")
+	@GetMapping("/")
 	public List <Initiative> getAll(){
-		return initiativeService.listAll();
+		return initiativeService.listActives();
 	}
 	
 	public ResponseEntity<Initiative> save(@RequestBody Initiative initiative){
