@@ -31,7 +31,7 @@ public class Initiative implements Serializable {
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String id;
 
-	private String nombre;
+	private String title;
 	
 	@ManyToMany
 	private List<User> volunteers;
