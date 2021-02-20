@@ -45,7 +45,7 @@ public class Inspiration implements Serializable {
 	
 	private boolean active;
 	
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date created;
 
 }
