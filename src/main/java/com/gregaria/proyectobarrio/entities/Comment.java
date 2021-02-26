@@ -31,8 +31,8 @@ public class Comment implements Serializable {
   
   private String content;
   
-//  @ManyToOne
-//  private User user;
+  @ManyToOne
+  private User user;
   
   private boolean reported;
   

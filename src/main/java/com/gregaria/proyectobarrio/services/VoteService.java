@@ -10,6 +10,7 @@ import com.gregaria.proyectobarrio.entities.Vote;
 import com.gregaria.proyectobarrio.entities.User;
 import com.gregaria.proyectobarrio.errors.WebException;
 import com.gregaria.proyectobarrio.repositories.VoteRepository;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,15 +26,20 @@ public class VoteService {
   @Autowired
   private VoteRepository voteRepository;
   
-  public Vote save(String id) throws WebException {
-    Vote vote = voteRepository.getOne(id);
-    validate(vote);
-    return voteRepository.save(vote);
-  }
+  @Autowired
+  private UserService userService;
   
-  public Vote update(String id) throws WebException {
-    Vote vote = voteRepository.getOne(id);
+  @Autowired
+  private InitiativeService initiativeService;
+  
+  public Vote save(String idUsuario, String idInitiative) throws WebException {
+    Vote vote = new Vote();
+    vote.setUser(userService.finById(idUsuario));
+    vote.setInitiative(initiativeService.findById(idInitiative));
+    vote.setActive(true);
+    vote.setCreated(new Date());
     validate(vote);
+    
     return voteRepository.save(vote);
   }
   

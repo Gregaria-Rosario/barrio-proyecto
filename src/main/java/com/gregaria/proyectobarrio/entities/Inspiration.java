@@ -30,6 +30,8 @@ public class Inspiration implements Serializable {
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String id;
   
+  private String title;
+  
   private String description;
   
   private List<String> links;
@@ -40,6 +42,8 @@ public class Inspiration implements Serializable {
   private List<Tag> tags;
   
   private boolean active;
+  
+  private boolean reported;
   
   @Temporal(TemporalType.DATE)
   private Date created;
