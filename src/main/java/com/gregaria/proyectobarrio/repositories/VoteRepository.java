@@ -24,4 +24,5 @@ public interface VoteRepository extends JpaRepository<Vote, String> {
   
   @Query("SELECT a FROM Vote a WHERE a.initiative = :id")
   public List<Vote> findByInitiative(@Param("id") String id);
+
 }
