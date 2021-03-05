@@ -27,24 +27,25 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 public class Inspiration implements Serializable {
 
-  @Id
-  @GeneratedValue(generator = "uuid")
-  @GenericGenerator(name = "uuid", strategy = "uuid2")
-  private String id;
+	@Id
+	@GeneratedValue(generator = "uuid")
+	@GenericGenerator(name = "uuid", strategy = "uuid2")
+	private String id;
+	
+	private String description;
+	
+	@ElementCollection
+	private List<String> links;
+	
+	@ElementCollection
+	private List<String> images;
+	
+	@ManyToMany
+	private List<Tag> tags;
+	
+	private boolean active;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date created;
 
-  private String description;
-
-  @ElementCollection
-  private List<String> links;
-
-  @ElementCollection
-  private List<String> images;
-
-  @ManyToMany
-  private List<Tag> tags;
-
-  private boolean active;
-
-  @Temporal(TemporalType.DATE)
-  private Date created;
 }

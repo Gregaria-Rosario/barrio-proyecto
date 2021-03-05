@@ -10,7 +10,7 @@ package com.gregaria.proyectobarrio.Enums;
  * @author Nahue
  */
 public enum State {
-  ACTIVE,
+  PUBLISHED,
   PROJECT,
   COMPLETE,
   ABANDONED,
