@@ -13,5 +13,8 @@ Flujo esperado:
 Internamente:
 * 
 
+Validaciones:
+* 
+
 Notas:
 *
