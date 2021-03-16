@@ -31,8 +31,8 @@ public class InspirationService {
 //  private TagService tagService;
   
   public Inspiration save(String title, String description, String links,
-          String images,
-          List<String> tag) throws WebException {
+          String images) throws WebException {
+    // falta el parametro de tags pero yo no puedo crear la entidad cuando mergie las ramas lo agrego
     Inspiration inspiration = new Inspiration();
     inspiration.setTitle(title);
     inspiration.setDescription(description);
@@ -46,10 +46,10 @@ public class InspirationService {
     return inspirationRepository.save(inspiration);
   }
   
-  public Inspiration Update(String id, String title, String description,
+  public Inspiration update(String id, String title, String description,
           String links,
           String images,
-          List<String> tag) throws WebException {
+          String tags) throws WebException {
     Inspiration inspiration = inspirationRepository.getOne(id);
     inspiration.setTitle(title);
     inspiration.setDescription(description);

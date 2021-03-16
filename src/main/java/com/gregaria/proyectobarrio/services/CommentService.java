@@ -34,7 +34,7 @@ public class CommentService {
     comment.setContent(content);
     comment.setActive(true);
     comment.setCreated(new Date());
-    validate(comment);
+    validate(comment.getContent());
     
     return commentRepository.save(comment);
   }
@@ -44,7 +44,7 @@ public class CommentService {
     comment.setContent(content);
     comment.setActive(true);
     comment.setCreated(new Date());
-    validate(comment);
+    validate(comment.getContent());
     
     return commentRepository.save(comment);
   }
@@ -103,10 +103,9 @@ public class CommentService {
   }
   
   
-  private Comment validate(Comment comment) throws WebException {
-    if (comment.getUser() == null) {
-      throw new WebException("An attempt was made to save a comment that did not have an user assigned");
+  private void validate(String content) throws WebException {
+    if (content == null || content.isEmpty()) {
+      throw new WebException("An attempt was made to save a comment that did not have an content  ");
     }
-    return comment;
   }
 }

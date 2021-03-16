@@ -6,7 +6,6 @@
 package com.gregaria.proyectobarrio.repositories;
 
 import com.gregaria.proyectobarrio.entities.Comment;
-import com.gregaria.proyectobarrio.entities.Vote;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -20,6 +19,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CommentRepository extends JpaRepository<Comment, String> {
   
-  @Query("SELECT a FROM comment a WHERE a.user = :id")
+  @Query("SELECT a FROM Comment a WHERE a.user = :id")
   public List<Comment> findByUser(@Param("id") String id);
 }
