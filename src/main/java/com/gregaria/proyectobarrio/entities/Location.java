@@ -22,28 +22,29 @@ import org.hibernate.annotations.GenericGenerator;
 @Data
 @Entity
 public class Location implements Serializable {
-  
-  @Id
+ 
+	@Id
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String id;
-  
-  private Long length;
-  
-  private Long latitude;
-  
-  private String address;
-  
-  private String neighborhood;
-  
-  private String city;
-  
-  private String state;
-  
-  private String country;
-  
-  private boolean active;
-  
-  @Temporal(TemporalType.DATE)
-  private Date created;
+
+	private Long longitude;
+	
+	private Long latitude;
+	
+	private String address;
+	
+	private String neighborhood;
+	
+	private String city;
+	
+	private String state;
+	
+	private String country;
+	
+	private boolean active;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date created;
+
 }

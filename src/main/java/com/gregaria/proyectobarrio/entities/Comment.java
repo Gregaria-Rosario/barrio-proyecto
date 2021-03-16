@@ -23,8 +23,8 @@ import org.hibernate.annotations.GenericGenerator;
 @Data
 @Entity
 public class Comment implements Serializable {
-  
-  @Id
+
+	@Id
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String id;
@@ -40,4 +40,5 @@ public class Comment implements Serializable {
   
   @Temporal(TemporalType.TIMESTAMP)
   private Date created;
+
 }

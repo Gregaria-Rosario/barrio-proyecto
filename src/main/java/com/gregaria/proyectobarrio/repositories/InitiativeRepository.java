@@ -16,6 +16,6 @@ import com.gregaria.proyectobarrio.entities.Initiative;
 @Repository
 public interface InitiativeRepository extends JpaRepository<Initiative, String> {
 
-	@Query("SELECT i FROM Initiative i WHERE i.active is true")
-	public List<Initiative> findAllActive();
+	
+	public List<Initiative> findByActiveTrue();
 }

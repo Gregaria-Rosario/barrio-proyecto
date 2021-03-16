@@ -23,15 +23,16 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 public class Tag implements Serializable {
   
-  @Id
+	@Id
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String id;
-  
-  private String name;
-  
-  private boolean active;
-  
-  @Temporal(TemporalType.DATE)
-  private Date created;
+	  
+	private String name;
+	
+	private boolean active;
+	  
+	@Temporal(TemporalType.DATE)
+	private Date created;
+
 }
