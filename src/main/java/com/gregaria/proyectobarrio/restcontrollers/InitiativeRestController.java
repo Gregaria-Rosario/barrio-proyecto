@@ -29,7 +29,7 @@ public class InitiativeRestController {
 	public @ResponseBody Iterable<Initiative> getAll(){
 		return initiativeService.listActives();
 	}
-	
+	//cambio de ejemplo
 	@PostMapping("/publish")
 	public @ResponseBody Initiative newInitiative(
 			@RequestParam String title,
