@@ -23,21 +23,21 @@ import org.hibernate.annotations.GenericGenerator;
 @Data
 @Entity
 public class Comment implements Serializable {
-  
-  @Id
+
+	@Id
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String id;
   
-  private String content;
-  
-  @ManyToOne
-  private User user;
-  
-  private boolean reported;
-  
-  private boolean active;
-  
-  @Temporal(TemporalType.TIMESTAMP)
-  private Date created;
+	  private String content;
+
+	  @ManyToOne
+	  private User user;
+
+	  private boolean reported;
+
+	  private boolean active;
+
+	  @Temporal(TemporalType.TIMESTAMP)
+	  private Date created;
 }

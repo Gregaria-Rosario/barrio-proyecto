@@ -10,6 +10,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -26,34 +28,34 @@ import org.hibernate.annotations.GenericGenerator;
 @Data
 @Entity
 public class User implements Serializable {
-  
-  @Id
+
+	@Id
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String id;
   
   private String idFirebase;
-  
+
   private Role role;
-  
+
   @ManyToMany
   private List<Initiative> initiatives;
-  
+
   @OneToMany
   private List<Inspiration> favorites;
-  
+
   @ManyToMany
   private List<Vote> votes;
-  
+
   @OneToMany
   private List<Tag> interests;
-  
+
   private boolean active;
-  
+
   @Temporal(TemporalType.TIMESTAMP)
-	private Date updatedAt;
-  
-  @Temporal(TemporalType.DATE)
+  private Date updatedAt;
+
+  @Temporal(TemporalType.TIMESTAMP)
   private Date createdAt;
-  
+
 }

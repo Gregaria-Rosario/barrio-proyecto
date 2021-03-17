@@ -32,7 +32,7 @@ public class VoteService {
   @Autowired
   private InitiativeService initiativeService;
   
-  public Vote save(String idUsuario, String idInitiative) throws WebException {
+  public Vote save(String idUsuario, String idInitiative) throws Exception {
     Vote vote = new Vote();
     vote.setUser(userService.finById(idUsuario));
     vote.setInitiative(initiativeService.findById(idInitiative));
