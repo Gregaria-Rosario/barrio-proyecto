@@ -28,17 +28,17 @@ public class Comment implements Serializable {
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String id;
-	
-	private String content;
-	
-	//@ManyToOne
-	//private User user;
-	
-	private boolean reported;
-	
-	private boolean active;
-	
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date created;
+  
+	  private String content;
+
+	  @ManyToOne
+	  private User user;
+
+	  private boolean reported;
+
+	  private boolean active;
+
+	  @Temporal(TemporalType.TIMESTAMP)
+	  private Date created;
 
 }

@@ -33,26 +33,27 @@ public class User implements Serializable {
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String id;
-	
-	@Enumerated(EnumType.STRING)
-	private Role role;
-	
-	@ManyToMany
-	private List<Initiative> initiatives;
-	
-	@OneToMany
-	private List<Inspiration> favorites;
-	
-	@ManyToMany
-	private List<Vote> votes;
-	
-	@OneToMany
-	private List<Tag> interests;
-	
-	private boolean active;
-	
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date updatedAt;
+  
+  private String idFirebase;
+
+  private Role role;
+
+  @ManyToMany
+  private List<Initiative> initiatives;
+
+  @OneToMany
+  private List<Inspiration> favorites;
+
+  @ManyToMany
+  private List<Vote> votes;
+
+  @OneToMany
+  private List<Tag> interests;
+
+  private boolean active;
+
+  @Temporal(TemporalType.TIMESTAMP)
+  private Date updatedAt;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdAt;
