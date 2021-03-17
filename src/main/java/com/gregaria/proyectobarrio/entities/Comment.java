@@ -40,4 +40,5 @@ public class Comment implements Serializable {
 
 	  @Temporal(TemporalType.TIMESTAMP)
 	  private Date created;
+
 }

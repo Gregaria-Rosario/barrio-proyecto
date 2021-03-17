@@ -54,8 +54,8 @@ public class User implements Serializable {
 
   @Temporal(TemporalType.TIMESTAMP)
   private Date updatedAt;
-
-  @Temporal(TemporalType.TIMESTAMP)
-  private Date createdAt;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date createdAt;
 
 }
