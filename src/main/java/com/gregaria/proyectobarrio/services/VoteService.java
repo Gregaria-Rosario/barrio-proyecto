@@ -7,7 +7,10 @@ package com.gregaria.proyectobarrio.services;
 
 import com.gregaria.proyectobarrio.entities.Initiative;
 import com.gregaria.proyectobarrio.entities.Vote;
+import com.gregaria.proyectobarrio.entities.User;
+import com.gregaria.proyectobarrio.errors.WebException;
 import com.gregaria.proyectobarrio.repositories.VoteRepository;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,44 +23,94 @@ import org.springframework.stereotype.Service;
 @Service
 public class VoteService {
 
-	@Autowired
-	private VoteRepository voteRepository;
-	
-	public Vote save(Vote vote) {
-		return null;
-	}
-	
-	public Vote update() {
-		return null;
-	}
-	
-	public Vote active() {
-		return null;
-	}
-	
-	public Vote notActive() {
-		return null;
-	}
-	
-	public void delete(Vote vote) {
-		voteRepository.delete(vote);
-	}
-	
-	public List<Vote> all() {
-		return voteRepository.findAll();
-	}
-	
-	public Vote findById(String id) {
-		Optional<Vote> response = voteRepository.findById(id);
-		Vote vote = response.get();
-		return vote;
-	}
-	
-//	 public List<Vote> findByUser(User user) {
-//		 return voteRepository.findByUser(user);
-//	 }
-//	
-//	public List<Vote> findByIniciative(Initiative initiative) {
-//		return voteRepository.findByInitiative();
-//	}
+  @Autowired
+  private VoteRepository voteRepository;
+  
+  @Autowired
+  private UserService userService;
+  
+  @Autowired
+  private InitiativeService initiativeService;
+  
+  public Vote save(String idUsuario, String idInitiative) throws Exception {
+    Vote vote = new Vote();
+    vote.setUser(userService.finById(idUsuario));
+    vote.setInitiative(initiativeService.findById(idInitiative));
+    vote.setActive(true);
+    vote.setCreated(new Date());
+    validate(vote);
+    
+    return voteRepository.save(vote);
+  }
+  
+  public Vote activate(String id) throws WebException {
+    Vote vote = voteRepository.getOne(id);
+    if (!vote.isActive()) {
+      vote.setActive(true);
+      voteRepository.save(vote);
+    } else {
+      throw new WebException("The vote you want to activate is already activated");
+    }
+    return null;
+  }
+  
+  public Vote deactivate(String id) throws WebException{
+    Vote vote = voteRepository.getOne(id);
+    if (vote.isActive()) {
+      vote.setActive(false);
+      voteRepository.save(vote);
+    } else {
+      throw new WebException("The vote you want to deactivate is already deactivate ");
+    }
+    return null;
+  }
+  
+  public Vote activeToggle(String id) {
+    Vote vote = voteRepository.getOne(id);
+    vote.setActive(!vote.isActive());
+    return voteRepository.save(vote);
+  }
+  
+  public void delete(String id) {
+    Vote vote = voteRepository.getOne(id);
+    voteRepository.delete(vote);
+  }
+
+  public List<Vote> all() {
+    return voteRepository.findAll();
+  }
+
+  public Vote findById(String id) {
+    Optional<Vote> response = voteRepository.findById(id);
+    Vote vote = response.get();
+    return vote;
+  }
+  
+  public List<Vote> findByUser(User user) {
+    return voteRepository.findByUser(user.getId());
+  }
+  
+  public List<Vote> findByUserId(String id) {
+    return voteRepository.findByUser(id);
+  }
+  
+  public List<Vote> findByIniciative(Initiative initiative) {
+    return voteRepository.findByInitiative(initiative.getId());
+  }
+  
+  public List<Vote> findByIniciativeId(String id) {
+    return voteRepository.findByInitiative(id);
+  }
+  
+  private Vote validate(Vote vote) throws WebException {
+    if (vote.getInitiative() == null) {
+      throw new WebException("An attempt was made to save a vote that did not have an initiative assigned");
+    }
+    
+    if (vote.getUser() == null) {
+      throw new WebException("An attempt was made to save a vote that did not have an user assigned");
+    }
+    
+    return vote;
+  }
 }
