@@ -10,6 +10,8 @@ import com.gregaria.proyectobarrio.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  *
  * @author Nahue
@@ -31,6 +33,10 @@ public class UserService {
   public User finById(String id) {
     User user = userRepository.getOne(id);
     return user;
+  }
+
+  public List<User> findAll() {
+    return userRepository.findAll();
   }
   
 }
