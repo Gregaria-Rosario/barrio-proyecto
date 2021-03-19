@@ -10,6 +10,7 @@ import com.gregaria.proyectobarrio.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,6 +25,11 @@ public class UserService {
   
   public User save() {
     return null;
+  }
+
+  public User save(User user) {
+    user.setCreatedAt(new Date());
+    return userRepository.save(user);
   }
   
   public User update() {

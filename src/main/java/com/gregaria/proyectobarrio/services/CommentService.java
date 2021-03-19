@@ -38,7 +38,18 @@ public class CommentService {
     
     return commentRepository.save(comment);
   }
-  
+
+  public Comment save(Comment comment) throws WebException {
+    Comment newComment = new Comment();
+    newComment.setUser(comment.getUser());
+    newComment.setContent(comment.getContent());
+    newComment.setActive(true);
+    newComment.setCreated(new Date());
+    validate(newComment.getContent());
+
+    return commentRepository.save(newComment);
+  }
+
   public Comment update(String idComment, String content) throws WebException {
     Comment comment = commentRepository.getOne(idComment);
     comment.setContent(content);
