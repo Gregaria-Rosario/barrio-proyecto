@@ -1,9 +1,14 @@
 
 package com.gregaria.proyectobarrio.controllers;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,15 +34,16 @@ public class InitiativeController {
 	// consultar el caso de "Iterable<Initiative>
 	// lo uso? Y en ese caso, como?
 	@GetMapping("/")
-	public String getAll(ModelMap model) {
-		initiativeService.listActives();
+	public String getAll(Model model) {
+		List<Initiative> all = initiativeService.listActives();
+		model.addAttribute("initiatives", all);
 		return "/initiatives/index.html";
 	}
 
 	@PostMapping("/publish")
 	public String newInitiative(@RequestParam String title, @RequestParam String creatorId,
 			@RequestParam Integer budget, @RequestParam String description, @RequestParam String idTags,
-			ModelMap model) {
+			Model model) {
 
 		// confirmar como llegan las etiquetas
 		// podria ser un string de ID's de etiquetas separados por coma
@@ -53,7 +59,7 @@ public class InitiativeController {
 
 	@PostMapping("/save-draft")
 	public String saveDraft(@RequestParam String title, @RequestParam String creatorId, @RequestParam Integer budget,
-			@RequestParam String description, @RequestParam String idTags, ModelMap model) {
+			@RequestParam String description, @RequestParam String idTags, Model model) {
 
 		// confirmar como llegan las etiquetas
 		// podria ser un string de ID's de etiquetas separados por coma
@@ -64,6 +70,17 @@ public class InitiativeController {
 		model.addAttribute("initiative", initiative);
 
 		return "/initiatives/index.html";
+	}
+	
+	@GetMapping("/own")
+	public String showOwnInitiatives(HttpSession session, @RequestParam(required = false) String creatorId,
+			Model model) {
+		
+		List<Initiative> ownInitiatives = initiativeService.listByCreator(creatorId);
+		
+		model.addAttribute("ownInitiatives", ownInitiatives);
+		
+		return "/initiatives/index.html"; 
 	}
 
 }

@@ -18,7 +18,10 @@ import com.gregaria.proyectobarrio.Enums.State;
 import com.gregaria.proyectobarrio.entities.Initiative;
 import com.gregaria.proyectobarrio.entities.Location;
 import com.gregaria.proyectobarrio.entities.Tag;
+import com.gregaria.proyectobarrio.entities.User;
+import com.gregaria.proyectobarrio.errors.WebException;
 import com.gregaria.proyectobarrio.repositories.InitiativeRepository;
+import com.gregaria.proyectobarrio.repositories.UserRepository;
 
 
 @Service
@@ -27,8 +30,8 @@ public class InitiativeService {
 	@Autowired
 	InitiativeRepository initiativeRepository;
 	
-//	@Autowired
-//	UserRepository userRepositiry;
+	@Autowired
+	UserRepository userRepository;
 	
 	@Autowired
 	TagService tagService;
@@ -44,8 +47,8 @@ public class InitiativeService {
 		
 		Initiative initiative = new Initiative();
 		
-//		User creator = userRepository.findyById(creatorId);
-//		initiative.setCreator(creator);
+		User creator = userRepository.getOne(creatorId);
+		initiative.setCreator(creator);
 		
 		initiative.setTitle(title);
 		initiative.setBudget(budget);
@@ -92,18 +95,21 @@ public class InitiativeService {
 		return initiativeRepository.findByActiveTrue();
 	}
 	
-	public Initiative findById(String id) throws Exception {
+	public List<Initiative> listByCreator(String creatorId) {
+		return initiativeRepository.findByCreatorId(creatorId);
+	}
+ 	
+	private Initiative findById(String id) throws WebException {
 		Optional<Initiative> response = initiativeRepository.findById(id);
 		
 		Initiative initiative = null;
 		if (response.isPresent()) {
 			 initiative = response.get();
+			 
+			 return initiative;
 		} else {
-			throw new Exception("No se encontró la iniciativa");
+			throw new WebException("No se encontró la iniciativa");
 		}
-		return initiative;
 	}
-	
-	
 
 }
