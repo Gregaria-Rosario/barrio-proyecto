@@ -9,4 +9,5 @@ package com.gregaria.proyectobarrio.controllers;
  */
 public class VoteController {
 
+	// ejemplo
 }
