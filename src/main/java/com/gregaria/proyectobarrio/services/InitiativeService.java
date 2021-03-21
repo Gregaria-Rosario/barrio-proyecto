@@ -99,7 +99,7 @@ public class InitiativeService {
 		return initiativeRepository.findByCreatorId(creatorId);
 	}
  	
-	private Initiative findById(String id) throws WebException {
+	public Initiative findById(String id) throws WebException {
 		Optional<Initiative> response = initiativeRepository.findById(id);
 		
 		Initiative initiative = null;
