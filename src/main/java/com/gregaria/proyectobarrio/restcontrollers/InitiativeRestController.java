@@ -2,9 +2,12 @@ package com.gregaria.proyectobarrio.restcontrollers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -64,6 +67,12 @@ public class InitiativeRestController {
 		
 		Initiative initiative = initiativeService.save(title, creatorId, budget, description, idTags, null, state);
 		return initiative;
+	}
+	
+	@GetMapping("/own")
+	public @ResponseBody Iterable<Initiative> showOwnInitiatives(@RequestParam(required = false) String creatorId) {
+		
+		return initiativeService.listByCreator(creatorId);
 	}
 	
 }

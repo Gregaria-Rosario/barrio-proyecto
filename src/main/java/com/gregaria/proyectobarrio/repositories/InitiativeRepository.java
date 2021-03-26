@@ -18,4 +18,6 @@ public interface InitiativeRepository extends JpaRepository<Initiative, String> 
 
 	
 	public List<Initiative> findByActiveTrue();
+	
+	public List<Initiative> findByCreatorId(String id);
 }
