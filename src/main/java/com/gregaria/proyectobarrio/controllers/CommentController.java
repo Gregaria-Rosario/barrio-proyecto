@@ -20,7 +20,18 @@ public class CommentController {
     private UserService userService;
 
     @GetMapping("/")
-    public String getAll(Model model, @RequestParam String idUser) {
+    public String getAll(Model model) {
+        try {
+            model.addAttribute("comments", commentService.findAll());
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("error", "Ocurrio un error");
+        }
+        return "/comment/index";
+    }
+
+    @GetMapping("/comment/user")
+    public String getCommentUser(Model model, @RequestParam String idUser) {
         try {
             model.addAttribute("comments", commentService.findByUser(userService.finById(idUser)));
         } catch (Exception e) {

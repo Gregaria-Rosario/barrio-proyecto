@@ -104,6 +104,10 @@ public class CommentService {
     Comment comment = response.get();
     return comment;
   }
+
+  public List<Comment> findAll() {
+    return commentRepository.findAll();
+  }
   
   public List<Comment> findByUser(User user) {
     return commentRepository.findByUser(user.getId());
