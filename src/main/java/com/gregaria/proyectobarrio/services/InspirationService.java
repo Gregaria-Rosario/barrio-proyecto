@@ -45,6 +45,17 @@ public class InspirationService {
     
     return inspirationRepository.save(inspiration);
   }
+
+  public Inspiration save(Inspiration inspiration, String links, String images, String tags) throws WebException {
+    // falta el parametro de tags pero yo no puedo crear la entidad cuando mergie las ramas lo agrego
+    inspiration.setLinks(Arrays.asList(links.split(",")));
+    inspiration.setImages(Arrays.asList(images.split(",")));
+//    inspiration.setTags(tagService.saveListTag());
+    inspiration.setActive(true);
+    inspiration.setCreated(new Date());
+    validate(inspiration);
+    return inspirationRepository.save(inspiration);
+  }
   
   public Inspiration update(String id, String title, String description,
           String links,
@@ -100,6 +111,10 @@ public class InspirationService {
   public void delete(String id) {
     Inspiration inspiration = inspirationRepository.getOne(id);
     inspirationRepository.delete(inspiration);
+  }
+
+  public List<Inspiration> findAll() {
+    return inspirationRepository.findAll();
   }
   
   public Inspiration findById(String id) {

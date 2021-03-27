@@ -61,5 +61,8 @@ java/build/**
 /.nb-gradle/
 build/
 
+### Node ###
+/node_modules
+
 ## VS Code ##
 .vscode/
