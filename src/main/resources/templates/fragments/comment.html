@@ -1,0 +1,7 @@
+<!-- Falta completar-->
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<li th:fragment="comment">
+    <label th:text="(${comment} != null)? ${comment.user.name}" ></label>
+    <textarea th:value="${comment} != null ? ${comment.content} : ''" th:readonly="${edit}"></textarea>
+
+</li>

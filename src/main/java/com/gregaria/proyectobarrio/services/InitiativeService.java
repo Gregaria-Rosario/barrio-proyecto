@@ -10,15 +10,12 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import com.gregaria.proyectobarrio.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gregaria.proyectobarrio.Enums.State;
-import com.gregaria.proyectobarrio.entities.Initiative;
-import com.gregaria.proyectobarrio.entities.Location;
-import com.gregaria.proyectobarrio.entities.Tag;
-import com.gregaria.proyectobarrio.entities.User;
 import com.gregaria.proyectobarrio.errors.WebException;
 import com.gregaria.proyectobarrio.repositories.InitiativeRepository;
 import com.gregaria.proyectobarrio.repositories.UserRepository;
@@ -35,6 +32,9 @@ public class InitiativeService {
 	
 	@Autowired
 	TagService tagService;
+
+	@Autowired
+	private CommentService commentService;
 	
 	@Transactional
 	public Initiative save(String title,
@@ -110,6 +110,14 @@ public class InitiativeService {
 		} else {
 			throw new WebException("No se encontró la iniciativa");
 		}
+	}
+	@Transactional
+	public Comment saveComment(String idInitiative, Comment comment) throws WebException {
+		comment = commentService.save(comment);
+		Initiative initiative = initiativeRepository.getOne(idInitiative);
+		initiative.getComments().add(comment);
+		initiativeRepository.save(initiative);
+		return comment;
 	}
 
 }

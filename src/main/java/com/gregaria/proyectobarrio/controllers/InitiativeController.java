@@ -6,14 +6,12 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.websocket.server.PathParam;
 
+import com.gregaria.proyectobarrio.entities.Comment;
+import com.gregaria.proyectobarrio.errors.WebException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.gregaria.proyectobarrio.Enums.State;
 import com.gregaria.proyectobarrio.entities.Initiative;
@@ -83,4 +81,10 @@ public class InitiativeController {
 		return "/initiatives/index.html"; 
 	}
 
+	@PostMapping("/savecomment")
+	public String getAll(Model model, @RequestParam String idInspiration,
+						 @ModelAttribute("comment") Comment comment) throws WebException {
+		model.addAttribute("comment", initiativeService.saveComment(idInspiration,comment));
+		return "/fragments/comment :: comment";
+	}
 }
